@@ -12,6 +12,12 @@ div#container {
 div#banner {
 	padding: 10px;
 	background-color:#CCCCCC;
+	letter-spacing:-1px;
+}
+
+div#banner > h1 {
+	margin-top:5px;
+	margin-bottom:5px;
 }
 
 div#banner > a {
@@ -31,12 +37,17 @@ div#navigation>ul {
 div#navigation > ul li {
 	display:inline;
 	font-color:white;
-	padding-right:45px;
+	padding-right:35px;
 }
 
 div#navigation > ul li a {
 	text-decoration:none;
 	color:white;
+}
+
+div#navigation > ul li a:hover {
+	text-decoration:none;
+	color:red;
 }
 
 div#content {
@@ -85,7 +96,3 @@ body {
 	font-family:Helvetica, Arial, sans-serif;
 }
 
-h1 {
-	margin-top:5px;
-	margin-bottom:5px;
-}
