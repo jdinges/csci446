@@ -47,20 +47,27 @@ div#content {
 div#left {
 	float:left;
 	width:50%;
+	background-color:#FCFCFC;
 }
 
 div#right {
 	width:50%;
 	float:right;
+	background-color:#FCFCFC;
 }
 
 div#status {
 	background-color:#F0F1FF;
 	padding:5px;
-	width:250px;
+	width:350px;
+	float:right;
 }
 
-h3 {
+div#clear {
+	clear:both;
+}
+
+h2, h3{
 	margin-top:0px;
 	margin-bottom:10px;
 	margin-left:0px;
