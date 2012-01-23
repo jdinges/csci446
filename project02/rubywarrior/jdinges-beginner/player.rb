@@ -5,7 +5,7 @@ class Player
     #puts"health = #{@health}\nwHealth = #{warrior.health}\n"
     #puts"backward = #{warrior.feel(:backward)}\n"
     #puts"forward = #{warrior.feel}\n"
-    if warrior.feel(:backward).empty? && warrior.feel.empty?
+    if warrior.feel.empty?
       
       if taking_damage?(warrior)
         
@@ -17,16 +17,13 @@ class Player
         
       elsif @health < 20
         warrior.rest!
-      elsif @hitWall
-        warrior.walk!
       else
-        warrior.walk!(:backward)
+        warrior.walk!
       end
       
-    elsif "#{warrior.feel(:backward)}".eql? "wall"
-      puts"HIT A MOTHEFUCKING WALL!"
-      @hitWall = true
-      warrior.walk!
+    elsif warrior.feel.wall?
+      puts"HIT A MOTHERFUCKING WALL\n"
+      warrior.pivot!
       
     elsif warrior.feel.captive? 
       warrior.rescue!
