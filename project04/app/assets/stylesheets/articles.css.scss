@@ -68,6 +68,14 @@ table.articles .modify {
 	background: #FFFFFF
 }
 
-div.view_article {
-	
-}
+fieldset {
+  padding: 1em;
+  font:80%;
+ }
+label {
+  float:left;
+  width:10%;
+  margin-right:0.6em;
+  padding-top:0.3em;
+  text-align:right;
+ }
