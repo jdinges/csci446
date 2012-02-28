@@ -21,6 +21,16 @@
 		text-align:center;
 		padding:1em;
 	}
+
+}
+
+div.control {
+	width:80%;
+	padding:1em;
+	
+	a {
+		padding:2em;
+	}
 }
 
 div.articles {
@@ -56,4 +66,8 @@ table.articles .modify {
 
 .list_line_even {
 	background: #FFFFFF
+}
+
+div.view_article {
+	
 }
