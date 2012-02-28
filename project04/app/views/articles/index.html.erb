@@ -1,0 +1,46 @@
+<h3 class="banner">...with a name .com hipsters love!</h3>
+<div class="heading">
+	<div class="title">
+		<h1>All the World's Articles</h1>
+	</div>
+	<div class="new_article">
+		<%= link_to image_tag("add.png"), new_article_path %>
+		<%= link_to 'Create an Article', new_article_path %>
+	</div>
+</div>
+<div id="clear"></div>
+
+<div class="articles">
+	<table class="articles">
+	  <tr>
+	    <th>Title</th>
+	    <th>Author</th>
+	    <th>Body</th>
+	    <th>Date created</th>
+	    <th>Edit count</th>
+			<th class="modify"></th>
+			<th class="modify"></th>
+			<th class="modify"></th>
+	  </tr>
+
+	<% @articles.each do |article| %>
+	  <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
+	    <td><%= article.title %></td>
+	    <td><%= article.author %></td>
+	    <td><%= article.body %></td>
+	    <td><%= article.date_created %></td>
+	    <td><%= article.edit_count %></td>
+			<td class="modify"><%= link_to image_tag("zoom.png"), article %></td>
+	  	<td class="modify"><%= link_to image_tag("page_white_edit.png"), edit_article_path(article) %></td>
+	  	<td class="modify"><%= link_to image_tag("bin.png"), article, confirm: 'Are you sure?', method: :delete %></td>
+	  </tr>
+  	
+	<% end %>
+	</table>
+</div>
+
+<%= pluralize(@articles.count, 'article') %>
+
+<br />
+
+

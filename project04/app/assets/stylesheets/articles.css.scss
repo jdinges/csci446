@@ -1,0 +1,57 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.heading {
+	width:80%;
+	
+	.title {
+		float:left;
+		width:75%;
+		height:50px;
+		padding:1em;
+	}
+	
+	.new_article {
+		float:right;
+		width:15%;
+		line-height:50px;
+		vertical-align:middle;
+		text-align:center;
+		padding:1em;
+	}
+}
+
+div.articles {
+	overflow:auto;
+	max-height:18em;
+}
+
+table.articles {
+	border-collapse: collapse;
+	
+	th {
+		background:#CCCCCC;
+		border:1px solid black;
+	}
+	
+	td {
+		border:1px solid black;
+		padding-top:3px;
+		padding-bottom:3px
+	}
+}
+
+table.articles .modify {
+	background:#FFFFFF;
+	border:none;
+}
+
+.list_line_odd {
+	background: #EEEEEE
+}
+
+.list_line_even {
+	background: #FFFFFF
+}

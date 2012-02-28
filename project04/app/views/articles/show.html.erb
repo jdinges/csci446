@@ -1,0 +1,31 @@
+<h3>...what's "Articl" in Spanish anyway?</h3>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @article.title %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @article.author %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @article.body %>
+</p>
+
+<p>
+  <b>Date created:</b>
+  <%= @article.date_created %>
+</p>
+
+<p>
+  <b>Edit count:</b>
+  <%= @article.edit_count %>
+</p>
+
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
