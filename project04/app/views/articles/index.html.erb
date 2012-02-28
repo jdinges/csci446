@@ -27,7 +27,7 @@
 	  <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
 	    <td><%= article.title %></td>
 	    <td><%= article.author %></td>
-	    <td><%= article.body %></td>
+	    <td><%= truncate(article.body, :length => 50) %></td>
 	    <td><%= article.date_created %></td>
 	    <td><%= article.edit_count %></td>
 			<td class="modify"><%= link_to image_tag("zoom.png"), article %></td>

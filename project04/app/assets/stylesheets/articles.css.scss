@@ -30,6 +30,7 @@ div.articles {
 
 table.articles {
 	border-collapse: collapse;
+	width:90%;
 	
 	th {
 		background:#CCCCCC;
@@ -39,7 +40,8 @@ table.articles {
 	td {
 		border:1px solid black;
 		padding-top:3px;
-		padding-bottom:3px
+		padding-bottom:3px;
+		padding-left:10px;
 	}
 }
 
