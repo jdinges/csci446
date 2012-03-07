@@ -9,35 +9,33 @@
 	</div>
 </div>
 <div id="clear"></div>
+<%= will_paginate @articles %>
+<table class="articles">
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Body</th>
+    <th>Date created</th>
+    <th>Edit count</th>
+		<th class="modify"></th>
+		<th class="modify"></th>
+		<th class="modify"></th>
+  </tr>
 
-<div class="articles">
-	<table class="articles">
-	  <tr>
-	    <th>Title</th>
-	    <th>Author</th>
-	    <th>Body</th>
-	    <th>Date created</th>
-	    <th>Edit count</th>
-			<th class="modify"></th>
-			<th class="modify"></th>
-			<th class="modify"></th>
-	  </tr>
-
-	<% @articles.each do |article| %>
-	  <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
-	    <td><%= article.title %></td>
-	    <td><%= article.author %></td>
-	    <td><%= truncate(article.body, :length => 50) %></td>
-	    <td><%= article.date_created %></td>
-	    <td><%= article.edit_count %></td>
-			<td class="modify"><%= link_to image_tag("zoom.png"), article %></td>
-	  	<td class="modify"><%= link_to image_tag("page_white_edit.png"), edit_article_path(article) %></td>
-	  	<td class="modify"><%= link_to image_tag("bin.png"), article, confirm: 'Are you sure?', method: :delete %></td>
-	  </tr>
-  	
-	<% end %>
-	</table>
-</div>
+<% @articles.each do |article| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even')%>">
+    <td><%= article.title %></td>
+    <td><%= article.author %></td>
+    <td><%= truncate(article.body, :length => 50) %></td>
+    <td><%= article.date_created %></td>
+    <td><%= article.edit_count %></td>
+		<td class="modify"><%= link_to image_tag("zoom.png"), article %></td>
+  	<td class="modify"><%= link_to image_tag("page_white_edit.png"), edit_article_path(article) %></td>
+  	<td class="modify"><%= link_to image_tag("bin.png"), article, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>  	
+<% end %>
+</table>
+<%= will_paginate @articles %>
 
 <%= pluralize(@articles.count, 'article') %>
 

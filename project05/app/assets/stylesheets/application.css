@@ -30,3 +30,15 @@ h3.banner {
 div#clear {
 	clear:both;
 }
+
+ul.menubar {
+	list-style-type:none;
+	margin:0px 0px 20px 0px;
+	padding:10px;
+	background-color:#F0F0F0;
+}
+
+ul.menubar li {
+	display:inline;
+	margin-right:100px;
+}

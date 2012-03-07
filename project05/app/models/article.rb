@@ -1,7 +1,8 @@
 class Article < ActiveRecord::Base
   validates :title, :author, :body, presence: true
   attr_accessible :title, :author, :body, :edit_count
-  #def increment
-    #@edit_count += 1
+  belongs_to :author
+  #def self.paginate(page)
+   # paginate  :per_page => 10, :page => page
   #end
 end

@@ -5,10 +5,15 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-	<h1 class="banner">Articl.es</h1>
+	
 </head>
 <body>
+<h1 class="banner">Articl.es</h1>
 
+<ul class="menubar">
+	<li><%= link_to "articles", articles_path %></li>
+	<li><%= link_to "authors", "#" %></li>
+</ul>
 
 <%= yield %>
 
