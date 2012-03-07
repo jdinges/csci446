@@ -1,0 +1,18 @@
+%h3.banner ...what's "Articl" in Spanish anyway?
+%p#notice= notice
+.control
+  = link_to image_tag("arrow_left.png"), articles_path
+  = link_to 'list all articles', articles_path
+  = link_to image_tag("page_white_edit.png"), edit_article_path(@article)
+  = link_to 'edit', edit_article_path(@article)
+  = link_to image_tag("bin.png"), @article, confirm: 'Are you sure?', method: :delete
+  = link_to 'delete', @article, confirm: 'Are you sure?', method: :delete
+  = link_to image_tag("email.png")
+  = link_to 'email'
+%h3= @article.title
+%p
+  by #{@article.author}. #{@article.edit_count} edits since #{@article.date_created}.
+%p= @article.body
+= link_to 'Edit', edit_article_path(@article)
+|
+\#{link_to 'Back', articles_path}

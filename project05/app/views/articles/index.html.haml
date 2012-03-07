@@ -1,0 +1,32 @@
+%h3.banner ...with a name .com hipsters love!
+.heading
+  .title
+    %h1 All the World's Articles
+  .new_article
+    = link_to image_tag("add.png"), new_article_path
+    = link_to 'Create an Article', new_article_path
+#clear
+= will_paginate @articles
+%table.articles
+  %tr
+    %th Title
+    %th Author
+    %th Body
+    %th Date created
+    %th Edit count
+    %th.modify
+    %th.modify
+    %th.modify
+  - @articles.each do |article|
+    %tr{:class => cycle('list_line_odd', 'list_line_even')}
+      %td= article.title
+      %td= article.author
+      %td= truncate(article.body, :length => 50)
+      %td= article.date_created
+      %td= article.edit_count
+      %td.modify= link_to image_tag("zoom.png"), article
+      %td.modify= link_to image_tag("page_white_edit.png"), edit_article_path(article)
+      %td.modify= link_to image_tag("bin.png"), article, confirm: 'Are you sure?', method: :delete
+= will_paginate @articles
+= pluralize(@articles.count, 'article')
+%br/
