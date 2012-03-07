@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
+  
+  before_filter :load_authors, :only => [:edit,:new, :update]
+  
   def index
     #@articles = Article.all
     @articles = Article.paginate(:page => params[:page], :per_page => 10)
@@ -26,7 +29,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.json
   def new
     @article = Article.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @article }
@@ -84,4 +87,10 @@ class ArticlesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  private
+  
+    def load_authors
+      @authors = Author.all.collect
+    end
 end

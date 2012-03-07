@@ -16,8 +16,8 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :author %>:
-    <%= f.text_field :author %>
+    <%= f.label :author_id %>:
+    <%= f.select :author_id, @authors.collect { |a| [a.name,a.id] }, include_blank: true %>
   </div>
   <div class="field">
     <%= f.label :body %>:
