@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title Gamez
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    %ul.controlbar
+      %li= link_to "log_in", "#"
+      %li= link_to "register", "#"
+    %h1.banner= link_to "Gamez", games_path
+    = yield

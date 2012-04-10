@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %b Title:
+  = @game.title
+%p
+  %b Rating:
+  = @game.rating
+%p
+  %b Date added:
+  = @game.date_added
+= link_to 'Edit', edit_game_path(@game)
+|
+\#{link_to 'Back', games_path}

@@ -11,3 +11,18 @@
  *= require_self
  *= require_tree .
 */
+h1.banner {
+	text-align:center;
+}
+
+ul.controlbar {
+	list-style-type:none;
+	margin:0px 0px 10px 0px;
+	padding:10px;
+}
+
+ul.controlbar li {
+	display:inline;
+	margin-right:100px;
+	float:right;
+}

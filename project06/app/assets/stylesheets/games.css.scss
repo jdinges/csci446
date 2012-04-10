@@ -1,0 +1,41 @@
+// Place all the styles related to the Games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+div.control {
+	width:80%;
+	padding:1em;
+	
+	a {
+		padding:2em;
+	}
+}
+
+div.articles {
+	overflow:auto;
+	max-height:18em;
+}
+
+table.articles {
+	border-collapse: collapse;
+	width:90%;
+	
+	th {
+		background:#CCCCCC;
+		border:1px solid black;
+	}
+	
+	td {
+		border:1px solid black;
+		padding-top:3px;
+		padding-bottom:3px;
+		padding-left:10px;
+	}
+}
+
+.list_line_odd {
+	background: #EEEEEE
+}
+
+.list_line_even {
+	background: #FFFFFF
+}
