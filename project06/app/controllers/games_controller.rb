@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_filter :authorize, :except => :index
+  
   # GET /games
   # GET /games.json
   def index

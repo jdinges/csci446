@@ -1,6 +1,14 @@
 Gamez::Application.routes.draw do
-  resources :games
+  get "sessions/create"
 
+  get "sessions/destroy"
+
+  resources :games, :sessions
+  
+  #map.login 'login', :controller => 'sessions', :action => 'index'
+  match :to => 'sessions#new', :as => :login
+  match :to => 'sessions#destroy', :as => :logout
+  #map.logout 'logout', :controller => 'sessions', :action => 'destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
