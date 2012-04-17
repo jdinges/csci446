@@ -4,19 +4,17 @@
 		%th Title
 		%th Rating
 		%th Date Added
-		-if admin?
-			%th
-			%th
-			%th
+		%th
+		%th
+		%th
 	-@games.each do |game|
 		%tr{:class => cycle('list_line_odd', 'list_line_even')}
 			%td= game.title
 			%td= game.rating
 			%td= game.date_added
-			-if admin?
-				%td= link_to "View", game
-				%td= link_to "Edit", edit_game_path(game)
-				%td= link_to "Delete", game, confirm: 'Are you sure?', method: :delete
+			%td= link_to "View", game
+			%td= link_to "Edit", edit_game_path(game)
+			%td= link_to "Delete", game, confirm: 'Are you sure?', method: :delete
 			
 = will_paginate @games
 = pluralize(@games.count, 'game')

@@ -1,13 +1,25 @@
 Gamez::Application.routes.draw do
-  get "sessions/create"
 
-  get "sessions/destroy"
 
-  resources :games, :sessions
+  resources :user_sessions
+
+  resources :users
+
+  # get "usersessions/new"
+  # 
+  # get "sessions/create"
+  # 
+  # get "sessions/destroy"
+
+  get "login" => "user_sessions#new", :as => "login"
+  get "logout" => "user_sessions#destroy", :as => "logout"
+  #root :to => "sessions#new"
+
+  resources :games, :user_sessions, :users
   
   #map.login 'login', :controller => 'sessions', :action => 'index'
-  match :to => 'sessions#new', :as => :login
-  match :to => 'sessions#destroy', :as => :logout
+  #match :to => 'sessions#create', as: 'login'
+  #match :to => 'sessions#destroy', as: 'logout'
   #map.logout 'logout', :controller => 'sessions', :action => 'destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
