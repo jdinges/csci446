@@ -9,8 +9,13 @@
 <body>
 
 <ul class="controlbar">
-	<li><%= link_to "log_in", login_path %></li>
-	<li><%= link_to "register", new_user_path %></li>
+	<% if current_user %>
+		<li><%= link_to "edit profile", edit_user_path(:current) %></li>
+		<li><%= link_to "logout", logout_path %></li>
+	<% else %>
+		<li><%= link_to "log_in", login_path %></li>
+		<li><%= link_to "register", new_user_path %></li>
+	<% end %>
 </ul>
 <%= flash[:notice] %>
 
