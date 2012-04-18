@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :fname %><br />
+    <%= f.label :First_Name %><br />
     <%= f.text_field :fname %>
   </div>
   <div class="field">
-    <%= f.label :lname %><br />
+    <%= f.label :Last_Name %><br />
     <%= f.text_field :lname %>
   </div>
   <div class="field">
@@ -35,6 +35,12 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+
+	<div class="field">
+		<%= f.check_box :role, :checked => false %>
+		<%= f.label :admin? %>
+	</div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

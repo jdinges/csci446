@@ -1,6 +1,12 @@
 Gamez::Application.routes.draw do
 
 
+  get "role/new"
+
+  get "role/create"
+
+  get "role/update"
+
   resources :user_sessions
 
   resources :users

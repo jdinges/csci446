@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
+  #include Authentication
+  helper :all
   helper_method :current_user
+  before_filter { |c| Authorization.current_user = c.current_user  }
   
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
