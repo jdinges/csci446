@@ -19,10 +19,12 @@
     <%= f.label :Last_Name %><br />
     <%= f.text_field :lname %>
   </div>
+	<% if permitted_to? :create, @user %>
   <div class="field">
     <%= f.label :username %><br />
     <%= f.text_field :username %>
   </div>
+	<% end %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>

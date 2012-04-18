@@ -5,16 +5,20 @@
 		%th Rating
 		%th Date Added
 		%th
-		%th
-		%th
+		-if permitted_to? :edit, :games
+			%th
+		-if permitted_to? :destroy, :games
+			%th
 	-@games.each do |game|
 		%tr{:class => cycle('list_line_odd', 'list_line_even')}
 			%td= game.title
 			%td= game.rating
-			%td= game.date_added
+			%td= game.created_at " by "
 			%td= link_to "View", game
-			%td= link_to "Edit", edit_game_path(game)
-			%td= link_to "Delete", game, confirm: 'Are you sure?', method: :delete
+			-if permitted_to? :edit, game
+				%td= link_to "Edit", edit_game_path(game)
+			-if permitted_to? :destroy, game
+				%td= link_to "Delete", game, confirm: 'Are you sure?', method: :delete
 			
 = will_paginate @games
 = pluralize(@games.count, 'game')
