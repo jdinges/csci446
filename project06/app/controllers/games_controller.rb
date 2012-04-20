@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   #before_filter :authorize, :except => :index
   filter_resource_access
+  attr_accessor :created
   
   # GET /games
   # GET /games.json
@@ -43,11 +44,11 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    #@game = Game.new(params[:game])
-
+    @game = Game.new(params[:game])
+    @created = true
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Game was successfully created.' }
         format.json { render json: @game, status: :created, location: @game }
       else
         format.html { render action: "new" }
@@ -60,10 +61,10 @@ class GamesController < ApplicationController
   # PUT /games/1.json
   def update
     #@game = Game.find(params[:id])
-
+    @created = false
     respond_to do |format|
       if @game.update_attributes(params[:game])
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+        format.html { redirect_to root_url, notice: 'Game was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

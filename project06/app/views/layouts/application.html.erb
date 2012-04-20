@@ -10,8 +10,15 @@
 
 <ul class="controlbar">
 	<% if current_user %>
-		<li><%= link_to "edit profile", edit_user_path(:current) %></li>
 		<li><%= link_to "logout", logout_path %></li>
+		<li>
+			Logged in as <%= link_to current_user.username, edit_user_path(:current) %>,
+			<% if current_user.role %>
+				admin
+			<% else %>
+				member
+			<% end %>
+		</li>
 	<% else %>
 		<li><%= link_to "log_in", login_path %></li>
 		<li><%= link_to "register", new_user_path %></li>

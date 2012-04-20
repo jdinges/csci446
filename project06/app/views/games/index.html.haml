@@ -13,7 +13,10 @@
 		%tr{:class => cycle('list_line_odd', 'list_line_even')}
 			%td= game.title
 			%td= game.rating
-			%td= game.created_at " by "
+			%td
+				= game.created_at
+				by
+				= game.user.fname
 			%td= link_to "View", game
 			-if permitted_to? :edit, game
 				%td= link_to "Edit", edit_game_path(game)

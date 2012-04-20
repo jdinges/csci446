@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   acts_as_authentic
+  has_many :games
   #has_one :role
   #belongs_to :role
   
