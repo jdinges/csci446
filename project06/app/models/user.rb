@@ -5,6 +5,14 @@ class User < ActiveRecord::Base
   #has_one :role
   #belongs_to :role
   
+  def firstInDB?
+    if User.where(:id=>1)
+      false
+    else
+      true
+    end
+  end
+  
   def role_ids
     role.id
   end

@@ -37,12 +37,12 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
-
-	<div class="field">
-		<%= f.check_box :role, :checked => false %>
-		<%= f.label :admin? %>
-	</div>
-
+  <% if @user.firstInDB? %>
+  <div class="field">
+	<%= f.check_box :role, :checked => false %>
+	<%= f.label :admin? %>
+  </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
