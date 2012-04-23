@@ -1,13 +1,17 @@
 
-if (typeof localStorage.guessesLeft == 'undefined'){
-  localStorage.guessesLeft = 10;
+if (typeof sessionStorage.guessesLeft == 'undefined'){
+  sessionStorage.guessesLeft = 10;
+}
+
+if (typeof sessionStorage.secretNumber == 'undefined'){
+  sessionStorage.secretNumber = Math.floor(Math.random()*100) + 1;
 }
 
 var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
 
 $(function() {
-  //localStorage.guessesLeft = 10;
-  updateScore(localStorage.guessesLeft);
+  //sessionStorage.guessesLeft = 10;
+  updateScore(sessionStorage.guessesLeft);
   populateHighScores(highScores);
   //guessesLeft--;
 
@@ -25,11 +29,13 @@ function updateScore(score) {
 }
 
 function updateRemainingGuesses(){
-	//guessesLeft = 9;
-	//updateScore(guessesLeft);
-	//guessesLeft - 1;
-	//$();
-  localStorage.guessesLeft = localStorage.guessesLeft - 1;
-  updateScore(localStorage.guessesLeft);
-  alert(localStorage.guessesLeft);
+  var userGuess = document.getElementById('guessTheNumber').guess.value;
+  console.log(userGuess);
+
+  if(userGuess == parseInt(sessionStorage.secretNumber)){
+    alert("You guessed correctly!");
+  }
+  sessionStorage.guessesLeft = sessionStorage.guessesLeft - 1;
+  updateScore(sessionStorage.guessesLeft);
+  //alert(sessionStorage.guessesLeft);
 }
