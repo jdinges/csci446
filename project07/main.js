@@ -1,9 +1,13 @@
-guessesLeft = 10;
-//localStorage.guessesLeft=10;
+
+if (typeof localStorage.guessesLeft == 'undefined'){
+  localStorage.guessesLeft = 10;
+}
+
 var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
 
 $(function() {
-  updateScore(guessesLeft);
+  //localStorage.guessesLeft = 10;
+  updateScore(localStorage.guessesLeft);
   populateHighScores(highScores);
   //guessesLeft--;
 
@@ -25,7 +29,7 @@ function updateRemainingGuesses(){
 	//updateScore(guessesLeft);
 	//guessesLeft - 1;
 	//$();
-  guessesLeft = guessesLeft - 1;
-  updateScore(guessesLeft);
-  alert(guessesLeft);
+  localStorage.guessesLeft = localStorage.guessesLeft - 1;
+  updateScore(localStorage.guessesLeft);
+  alert(localStorage.guessesLeft);
 }
