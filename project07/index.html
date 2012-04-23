@@ -13,7 +13,7 @@
 <p class="subtitle">Fool! You have followed a link here and now your life depends on guessing my magic number!</p>
 <p>Between 1 and 100! Because it is magic!</p>
 <h2 id="score"><span id="guessesLeft"></span> Guesses Left</h2>
-<form id="guessTheNumber">
+<form id="guessTheNumber" onsubmit="updateRemainingGuesses()">
   <input type="text" size="3" name="guess" id="guess">
   <br>
   <input type="button" id="btnGuess" value="Guess!">
