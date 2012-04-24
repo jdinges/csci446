@@ -6,16 +6,46 @@ if (typeof sessionStorage.guessesLeft == 'undefined'){
 if (typeof sessionStorage.secretNumber == 'undefined'){
   sessionStorage.secretNumber = Math.floor(Math.random()*100) + 1;
 }
+$(document).ready(function() {
+  $('form').submit(function(e) {
+    e.preventDefault();
+    //alert("Hello world");
+    if($("input:first").val() == sessionStorage.secretNumber.toString()){
+      // call success function
+    } else if($("input:first").val() > sessionStorage.secretNumber.toString()){
+      $("div#infoUpdate").append("Too Damn High!");
+      $("div#infoUpdate").show("slow");
+      return true;
+    } else {
+      $("div#infoUpdate").append("Too Damn Low!");
+      $("div#infoUpdate").show("slow");
+      return true;
+    }
+    
+    return false;
+  });
+});
+
+$('form#guessTheNumber').submit(function(e) {
+  e.preventDefault();
+  // if($("input:first").val() == sessionStorage.secretNumber.toString()){
+  //   $("div#infoUpdate").append("Correct!").show("slow");
+  //   return true;
+  // } else {
+  //   $("div#infoUpdate").append("Incorrect!").show("slow");
+  //   return false;
+  // }
+  alert("testing...");
+  $("div#infoUpdate").append("Incorrect");
+  $("div#infoUpdate").show("slow");
+  return false;
+});
 
 var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
 
 $(function() {
-  //sessionStorage.guessesLeft = 10;
   updateScore(sessionStorage.guessesLeft);
   populateHighScores(highScores);
-  //guessesLeft--;
-
-  //alert(guessesLeft);
 });
 
 function populateHighScores(scores) {
@@ -28,14 +58,44 @@ function updateScore(score) {
   $('h2#score span#guessesLeft').append(score);
 }
 
-function updateRemainingGuesses(){
-  var userGuess = document.getElementById('guessTheNumber').guess.value;
-  console.log(userGuess);
+function updateHelp(message){
+  // if($("div#infoUpdate").is(":hidden")){
+  //   $('div#infoUpdate').append(message);
+  //   $("div#infoUpdate").slideDown("slow");
+  // } else {
+  //   $("div#infoUpdate").hide();
+  // }
 
-  if(userGuess == parseInt(sessionStorage.secretNumber)){
-    alert("You guessed correctly!");
-  }
+  // $("form#guessTheNumber").submit(function() {
+  //   $("div#infoUpdate").show("slow");
+  // });
+  // alert("pausing...");
+
+  // $("div#infoUpdate").append("Incorrect");
+  // $("div#infoUpdate").show("slow");
+
+  $("form#guessTheNumber").submit(function () {
+    if($("input:first").val() == sessionStorage.secretNumber.toString()){
+      $("div#infoUpdate").append("Correct!").show("slow");
+      return true;
+    } else {
+      $("div#infoUpdate").append("Incorrect!").show("slow");
+      return false;
+    }
+  });
+
+  return false;
+}
+
+function updateRemainingGuesses(){
+  var userGuess = parseInt(document.getElementById('guessTheNumber').guess.value);
+  updateHelp("Incorrect!");
   sessionStorage.guessesLeft = sessionStorage.guessesLeft - 1;
   updateScore(sessionStorage.guessesLeft);
+  if(userGuess == parseInt(sessionStorage.secretNumber)){
+    alert("You guessed correctly!");
+  } else {
+    updateHelp("Incorrect!");
+  }
   //alert(sessionStorage.guessesLeft);
 }

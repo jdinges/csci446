@@ -26,6 +26,15 @@ h2#score {
   margin: 0px;
 }
 
+div#infoUpdate {
+  display:none;
+  background:#de9a44;
+  width: 100px;
+  height: 50px;
+  float:center;
+  margin:auto;
+}
+
 input#guess {
   font-size: 8em;
 }
