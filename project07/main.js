@@ -44,7 +44,10 @@ if (typeof sessionStorage.secretNumber == 'undefined'){
 // });
 
 //var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
-localStorage.highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
+if(typeof localStorage.highScores == 'undefined'){
+  var ary = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
+  localStorage['highScores']=JSON.stringify(ary);
+}
 
 $(function() {
   updateScore(sessionStorage.guessesLeft);
@@ -61,8 +64,13 @@ $(function() {
       // append to array
       var userName = prompt("Enter your name, bitch.","Jon Snow");
       if(userName != null && userName != ""){
-        localStorage.highScores.push([sessionStorage.guessesLeft, userName]);
-        //localStorage.highScores.push(name);
+        // localStorage.highScores.push(sessionStorage.guessesLeft.toString());
+        // localStorage.highScores.push(userName.toString());
+        
+        // var tempArray = JSON.parse(localStorage['highScores']);
+        // tempArray.push(sessionStorage.guessesLeft.toString());
+        // tempArray.push(userName);
+        // localStorage['highScores'] = JSON.stringify(tempArray);
         populateHighScores(localStorage.highScores);
       }
       restart("HOLY FUCKING EXPLODING SEALS, YOU WON! PLAY AGAIN, BITCH.");
