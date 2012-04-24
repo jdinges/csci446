@@ -52,11 +52,17 @@ $(function() {
     var lastGuess = parseInt(sessionStorage.previousGuess);
     var correctAnswer = parseInt(sessionStorage.secretNumber);
     if(lastGuess == correctAnswer){
-      alert("CORRECT!");
+      //alert("CORRECT!");
+      $("div#infoUpdate").append("Correct!");
+      $("div#infoUpdate").show("slow");
     } else if(lastGuess > correctAnswer){
-      alert("Too Damn High!");
+      //alert("Too Damn High!");
+      $("div#infoUpdate").append("Too Damn HIGH!");
+      $("div#infoUpdate").show("slow");
     } else {
-      alert("Too Damn LOW");
+      //alert("Too Damn LOW");
+      $("div#infoUpdate").append("Too Damn LOW!");
+      $("div#infoUpdate").show("slow");
     }
   }
   updateScore(sessionStorage.guessesLeft);
