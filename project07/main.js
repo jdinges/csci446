@@ -43,9 +43,12 @@ if (typeof sessionStorage.secretNumber == 'undefined'){
 //   return false;
 // });
 
-var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
+//var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
+localStorage.highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
 
 $(function() {
+  updateScore(sessionStorage.guessesLeft);
+  populateHighScores(localStorage.highScores);
   if(typeof sessionStorage.previousGuess != 'undefined'){
     // Decrement logic and function
     sessionStorage.guessesLeft = sessionStorage.guessesLeft - 1;
@@ -55,6 +58,14 @@ $(function() {
       //alert("CORRECT!");
       $("div#infoUpdate").append("Correct!");
       $("div#infoUpdate").show("slow");
+      // append to array
+      var userName = prompt("Enter your name, bitch.","Jon Snow");
+      if(userName != null && userName != ""){
+        localStorage.highScores.push([sessionStorage.guessesLeft, userName]);
+        //localStorage.highScores.push(name);
+        populateHighScores(localStorage.highScores);
+      }
+      restart("HOLY FUCKING EXPLODING SEALS, YOU WON! PLAY AGAIN, BITCH.");
     } else if(lastGuess > correctAnswer){
       //alert("Too Damn High!");
       $("div#infoUpdate").append("Too Damn HIGH!");
@@ -64,9 +75,10 @@ $(function() {
       $("div#infoUpdate").append("Too Damn LOW!");
       $("div#infoUpdate").show("slow");
     }
+
+
   }
-  updateScore(sessionStorage.guessesLeft);
-  populateHighScores(highScores);
+
 
 });
 
@@ -90,7 +102,17 @@ function populateHighScores(scores) {
 }
 
 function updateScore(score) {
-  $('h2#score span#guessesLeft').append(score);
+  if(score > 0){
+    $('h2#score span#guessesLeft').append(score);
+  } else {
+    restart("You have run out of guesses. PLAY AGAIN, MOTHERFUCKER!");
+  }
+}
+
+function restart(message){
+  sessionStorage.clear();
+  window.location.reload();
+  alert(message);
 }
 
 function updateHelp(message){
