@@ -110,11 +110,16 @@ $(document).ready(function() {
   });
 });
 
+function compare(x,y){
+  return y[0] - x[0];
+}
+
 
 function populateHighScores(scores) {
   //console.log(localStorage.highScores);
   //console.log(scores);
   scores = JSON.parse(scores);
+  scores.sort(compare);
   //scores = makeArrayFromJSON(scores);
 
   for (var i = 0; i < scores.length; ++i) {
