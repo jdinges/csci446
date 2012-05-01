@@ -7,42 +7,6 @@ if (typeof sessionStorage.guessesLeft == 'undefined'){
 if (typeof sessionStorage.secretNumber == 'undefined'){
   sessionStorage.secretNumber = Math.floor(Math.random()*100) + 1;
 }
-// $(document).ready(function() {
-//   $('form').submit(function(e) {
-//     e.preventDefault();
-//     //alert("Hello world");
-//     if($("input:first").val() == sessionStorage.secretNumber.toString()){
-//       // call success function
-//     } else if($("input:first").val() > sessionStorage.secretNumber.toString()){
-//       $("div#infoUpdate").append("Too Damn High!");
-//       $("div#infoUpdate").show("slow");
-//       updateRemainingGuesses();
-//       return true;
-//     } else {
-//       $("div#infoUpdate").append("Too Damn Low!");
-//       $("div#infoUpdate").show("slow");
-//       updateRemainingGuesses();
-//       return true;
-//     }
-    
-//     return false;
-//   });
-// });
-
-// $('form#guessTheNumber').submit(function(e) {
-//   e.preventDefault();
-//   // if($("input:first").val() == sessionStorage.secretNumber.toString()){
-//   //   $("div#infoUpdate").append("Correct!").show("slow");
-//   //   return true;
-//   // } else {
-//   //   $("div#infoUpdate").append("Incorrect!").show("slow");
-//   //   return false;
-//   // }
-//   alert("testing...");
-//   $("div#infoUpdate").append("Incorrect");
-//   $("div#infoUpdate").show("slow");
-//   return false;
-// });
 
 //var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
 if(typeof localStorage.highScores == 'undefined'){
@@ -52,7 +16,7 @@ if(typeof localStorage.highScores == 'undefined'){
 }
 
 $(function() {
-  updateScore(sessionStorage.guessesLeft);
+  
   populateHighScores(localStorage.highScores);
   if(typeof sessionStorage.previousGuess != 'undefined'){
     // Decrement logic and function
@@ -71,10 +35,10 @@ $(function() {
         
         //var tempArray = makeArrayFromJSON(localStorage.highScores);
         var tempArray = JSON.parse(localStorage.highScores);
-        tempArray.push([parseInt(sessionStorage.guessesLeft.toString()), userName.toString()]);
+        tempArray.push([parseInt(sessionStorage.guessesLeft.toString())+1, userName.toString()]);
         localStorage['highScores'] = JSON.stringify(tempArray);
 
-        populateHighScores(localStorage.highScores);
+        //populateHighScores(localStorage.highScores);
       }
       restart("HOLY FUCKING EXPLODING SEALS, YOU WON! PLAY AGAIN, BITCH.");
     } else if(lastGuess > correctAnswer){
@@ -88,25 +52,22 @@ $(function() {
     }
 
   }
+updateScore(sessionStorage.guessesLeft);
 sessionStorage.guessesLeft = sessionStorage.guessesLeft - 1;
-console.log("userGuess2 = ",sessionStorage.previousGuess);
+
 });
 
 $(document).ready(function() {
   $('form#guessTheNumber').submit(function(e) {
-    var userGuess = parseInt(document.getElementById('guessTheNumber').guess.value);
+    var userGuess = parseInt(document.getElementById('guessTheNumber').guess.value.toString());
     console.log("userGuess = ",userGuess);
     if((userGuess < 0) || (userGuess > 100)){
-      $("div#infoUpdate").append("Number must be between 0 and 100!")
-      $("div#infoUpdate").show("slow");
+      // $("div#infoUpdate").append("Number must be between 0 and 100!")
+      // $("div#infoUpdate").show("slow");
+      //alert("Number must be between 0 and 100!");
     }
     sessionStorage.previousGuess = userGuess;
 
-    // if(userGuess == sessionStorage.secretNumber.toString()){
-    //   // Call success function
-    // } else {
-      
-    // }
   });
 });
 
