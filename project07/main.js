@@ -47,6 +47,7 @@ if (typeof sessionStorage.secretNumber == 'undefined'){
 //var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
 if(typeof localStorage.highScores == 'undefined'){
   var ary = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
+  //var ary = new Array("9","HarryJamesPotter","3","ZedCthulhu","2","NearlyDied");
   localStorage['highScores']=JSON.stringify(ary);
 }
 
@@ -61,20 +62,19 @@ $(function() {
     var correctAnswer = parseInt(sessionStorage.secretNumber);
     if(lastGuess == correctAnswer){
       //alert("CORRECT!");
+      console.log("correct guess ",lastGuess);
       $("div#infoUpdate").append("Correct!");
       $("div#infoUpdate").show("slow");
       // append to array
       var userName = prompt("Enter your name, bitch.","Jon Snow");
       if(userName != null && userName != ""){
-        // localStorage.highScores.push(sessionStorage.guessesLeft.toString());
-        // localStorage.highScores.push(userName.toString());
         
-        // var tempArray = JSON.parse(localStorage['highScores']);
-        // tempArray.push(sessionStorage.guessesLeft.toString());
-        // tempArray.push(userName);
-        // localStorage['highScores'] = JSON.stringify(tempArray);
+        //var tempArray = makeArrayFromJSON(localStorage.highScores);
+        var tempArray = JSON.parse(localStorage.highScores);
+        tempArray.push([parseInt(sessionStorage.guessesLeft.toString()), userName.toString()]);
+        localStorage['highScores'] = JSON.stringify(tempArray);
 
-        populateHighScores(JSON.parse(localStorage.highScores));
+        populateHighScores(localStorage.highScores);
       }
       restart("HOLY FUCKING EXPLODING SEALS, YOU WON! PLAY AGAIN, BITCH.");
     } else if(lastGuess > correctAnswer){
@@ -114,10 +114,45 @@ $(document).ready(function() {
 function populateHighScores(scores) {
   //console.log(localStorage.highScores);
   //console.log(scores);
+  scores = JSON.parse(scores);
+  //scores = makeArrayFromJSON(scores);
+
   for (var i = 0; i < scores.length; ++i) {
     console.log(scores[i]);
     $('div#highScores').append("<p>" + scores[i][0] + " " + scores[i][1] + "</p>");
   }
+}
+
+function makeArrayFromJSON(ary){
+
+  var commaCounter = true;
+  var tempNumberStr = "";
+  var tempNameStr = "";
+  var returnArray = new Array();
+  for(var i = 0; i < ary.length; ++i) {
+    var element = ary[i];
+
+    if((element == ",") || (i == ary.length - 1)){
+      // flip comma bit
+      if(commaCounter){
+        commaCounter = false;
+        tempNumberStr = parseInt(tempNumberStr);
+      } else {
+        commaCounter = true;
+        returnArray.push([tempNumberStr,tempNameStr]);
+        console.log("pushing [",tempNumberStr,",",tempNameStr,"]");
+        tempNameStr = "";
+        tempNumberStr = "";
+      }
+
+
+    } else if(commaCounter){
+      tempNumberStr = tempNumberStr + element;
+    } else {
+      tempNameStr = tempNameStr + element;
+    }
+  }
+  return returnArray;
 }
 
 function updateScore(score) {
