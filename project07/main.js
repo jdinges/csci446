@@ -8,10 +8,8 @@ if (typeof sessionStorage.secretNumber == 'undefined'){
   sessionStorage.secretNumber = Math.floor(Math.random()*100) + 1;
 }
 
-//var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
 if(typeof localStorage.highScores == 'undefined'){
   var ary = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
-  //var ary = new Array("9","HarryJamesPotter","3","ZedCthulhu","2","NearlyDied");
   localStorage['highScores']=JSON.stringify(ary);
 }
 
@@ -75,7 +73,6 @@ function compare(x,y){
   return y[0] - x[0];
 }
 
-
 function populateHighScores(scores) {
   //console.log(localStorage.highScores);
   //console.log(scores);
@@ -87,38 +84,6 @@ function populateHighScores(scores) {
     console.log(scores[i]);
     $('div#highScores').append("<p>" + scores[i][0] + " " + scores[i][1] + "</p>");
   }
-}
-
-function makeArrayFromJSON(ary){
-
-  var commaCounter = true;
-  var tempNumberStr = "";
-  var tempNameStr = "";
-  var returnArray = new Array();
-  for(var i = 0; i < ary.length; ++i) {
-    var element = ary[i];
-
-    if((element == ",") || (i == ary.length - 1)){
-      // flip comma bit
-      if(commaCounter){
-        commaCounter = false;
-        tempNumberStr = parseInt(tempNumberStr);
-      } else {
-        commaCounter = true;
-        returnArray.push([tempNumberStr,tempNameStr]);
-        console.log("pushing [",tempNumberStr,",",tempNameStr,"]");
-        tempNameStr = "";
-        tempNumberStr = "";
-      }
-
-
-    } else if(commaCounter){
-      tempNumberStr = tempNumberStr + element;
-    } else {
-      tempNameStr = tempNameStr + element;
-    }
-  }
-  return returnArray;
 }
 
 function updateScore(score) {
@@ -140,41 +105,6 @@ function restart(message){
   }
   alert(message);
 }
-
-function updateHelp(message){
-  // if($("div#infoUpdate").is(":hidden")){
-  //   $('div#infoUpdate').append(message);
-  //   $("div#infoUpdate").slideDown("slow");
-  // } else {
-  //   $("div#infoUpdate").hide();
-  // }
-
-  // $("form#guessTheNumber").submit(function() {
-  //   $("div#infoUpdate").show("slow");
-  // });
-  // alert("pausing...");
-
-  // $("div#infoUpdate").append("Incorrect");
-  // $("div#infoUpdate").show("slow");
-
-  $("form#guessTheNumber").submit(function () {
-    if($("input:first").val() == sessionStorage.secretNumber.toString()){
-      $("div#infoUpdate").append("Correct!").show("slow");
-      return true;
-    } else {
-      $("div#infoUpdate").append("Incorrect!").show("slow");
-      return false;
-    }
-  });
-
-  return false;
-}
-
-// function checkInput(input){
-//   if(input < 1 || input > 100){
-
-//   }
-// }
 
 function updateRemainingGuesses(){
   //var userGuess = parseInt(document.getElementById('guessTheNumber').guess.value);
