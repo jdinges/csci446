@@ -1,6 +1,7 @@
 
 if (typeof sessionStorage.guessesLeft == 'undefined'){
   sessionStorage.guessesLeft = 10;
+  console.log("Creating guessesLeft variable...");
 }
 
 if (typeof sessionStorage.secretNumber == 'undefined'){
@@ -54,7 +55,8 @@ $(function() {
   populateHighScores(localStorage.highScores);
   if(typeof sessionStorage.previousGuess != 'undefined'){
     // Decrement logic and function
-    sessionStorage.guessesLeft = sessionStorage.guessesLeft - 1;
+
+    //sessionStorage.guessesLeft = sessionStorage.guessesLeft - 1;
     var lastGuess = parseInt(sessionStorage.previousGuess);
     var correctAnswer = parseInt(sessionStorage.secretNumber);
     if(lastGuess == correctAnswer){
@@ -71,7 +73,8 @@ $(function() {
         // tempArray.push(sessionStorage.guessesLeft.toString());
         // tempArray.push(userName);
         // localStorage['highScores'] = JSON.stringify(tempArray);
-        populateHighScores(localStorage.highScores);
+
+        populateHighScores(JSON.parse(localStorage.highScores));
       }
       restart("HOLY FUCKING EXPLODING SEALS, YOU WON! PLAY AGAIN, BITCH.");
     } else if(lastGuess > correctAnswer){
@@ -84,16 +87,21 @@ $(function() {
       $("div#infoUpdate").show("slow");
     }
 
-
   }
-
-
+sessionStorage.guessesLeft = sessionStorage.guessesLeft - 1;
+console.log("userGuess2 = ",sessionStorage.previousGuess);
 });
 
 $(document).ready(function() {
   $('form#guessTheNumber').submit(function(e) {
     var userGuess = parseInt(document.getElementById('guessTheNumber').guess.value);
+    console.log("userGuess = ",userGuess);
+    if((userGuess < 0) || (userGuess > 100)){
+      $("div#infoUpdate").append("Number must be between 0 and 100!")
+      $("div#infoUpdate").show("slow");
+    }
     sessionStorage.previousGuess = userGuess;
+
     // if(userGuess == sessionStorage.secretNumber.toString()){
     //   // Call success function
     // } else {
@@ -104,12 +112,16 @@ $(document).ready(function() {
 
 
 function populateHighScores(scores) {
+  //console.log(localStorage.highScores);
+  //console.log(scores);
   for (var i = 0; i < scores.length; ++i) {
+    console.log(scores[i]);
     $('div#highScores').append("<p>" + scores[i][0] + " " + scores[i][1] + "</p>");
   }
 }
 
 function updateScore(score) {
+
   if(score > 0){
     $('h2#score span#guessesLeft').append(score);
   } else {
@@ -120,6 +132,11 @@ function updateScore(score) {
 function restart(message){
   sessionStorage.clear();
   window.location.reload();
+  console.log("restarting...");
+  if (typeof sessionStorage.guessesLeft == 'undefined'){
+    sessionStorage.guessesLeft = 11;
+    console.log("Creating guessesLeft variable...");
+  }
   alert(message);
 }
 
@@ -151,6 +168,12 @@ function updateHelp(message){
 
   return false;
 }
+
+// function checkInput(input){
+//   if(input < 1 || input > 100){
+
+//   }
+// }
 
 function updateRemainingGuesses(){
   //var userGuess = parseInt(document.getElementById('guessTheNumber').guess.value);
