@@ -1,3 +1,6 @@
+// <script src="/app/assets/javascripts/main.js"></script>
+// <link href="/Users/Fawx/Documents/Web Applications/scoreboard/screen.css" media="screen" rel="stylesheet" type="text/css">
+
 
 if (typeof sessionStorage.guessesLeft == 'undefined'){
   sessionStorage.guessesLeft = 10;
